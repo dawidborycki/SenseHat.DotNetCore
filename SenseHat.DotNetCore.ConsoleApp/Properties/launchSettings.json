@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SenseHat.DotNetCore.ConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": "Y"
+    }
+  }
+}
