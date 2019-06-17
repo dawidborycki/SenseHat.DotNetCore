@@ -45,6 +45,7 @@ namespace SenseHat.DotNetCore.WebApp.Controllers
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Accepted)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public ActionResult SetColor(string colorName)
         {
             var color = Color.FromName(colorName);

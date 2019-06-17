@@ -19,7 +19,7 @@ namespace SenseHat.DotNetCore.WebApp
 
         private readonly OpenApiInfo openApiInfo = new OpenApiInfo
         {
-            Title = "SenseHAT API",
+            Title = "Sense HAT API",
             Version = "v1"
         };
 
