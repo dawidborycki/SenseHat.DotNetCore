@@ -17,7 +17,7 @@ namespace SenseHat.DotNetCore.WebApp
         }
 
         #endregion
-        
+
         #region Methods
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

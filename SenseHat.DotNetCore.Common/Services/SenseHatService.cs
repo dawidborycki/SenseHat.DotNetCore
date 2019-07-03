@@ -2,10 +2,7 @@
 
 using Iot.Device.SenseHat;
 using SenseHat.DotNetCore.Common.Sensors;
-using System.Device.I2c;
-using System.Device.I2c.Drivers;
 using System.Drawing;
-using System.Runtime.InteropServices;
 
 #endregion
 
@@ -41,46 +38,27 @@ namespace SenseHat.DotNetCore.Common.Services
 
         public SenseHatService()
         {
-            ledMatrix = new SenseHatLedMatrixI2c(
-                GetI2cDevice(SenseHatLedMatrixI2c.I2cAddress));
+            ledMatrix = new SenseHatLedMatrixI2c();
 
-            pressureAndTemperatureSensor = new SenseHatPressureAndTemperature(
-                GetI2cDevice(SenseHatPressureAndTemperature.I2cAddress));
+            pressureAndTemperatureSensor = new SenseHatPressureAndTemperature();
 
-            temperatureAndHumiditySensor = new SenseHatTemperatureAndHumidity(
-                GetI2cDevice(SenseHatTemperatureAndHumidity.I2cAddress));
+            temperatureAndHumiditySensor = new SenseHatTemperatureAndHumidity();
         }
 
         #endregion
 
         #region Methods (Private)
 
-    private SensorReadings GetReadings()
-    {
-        return new SensorReadings
+        private SensorReadings GetReadings()
         {
-            Temperature = temperatureAndHumiditySensor.Temperature,
-            Humidity = temperatureAndHumiditySensor.Humidity,
-            Temperature2 = pressureAndTemperatureSensor.Temperature,
-            Pressure = pressureAndTemperatureSensor.Pressure
-        };
-    }
-
-        private I2cDevice GetI2cDevice(int deviceAddress)
-        {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            return new SensorReadings
             {
-                var settings = new I2cConnectionSettings(1, deviceAddress);
-
-                return new Windows10I2cDevice(settings);
-            }
-            else
-            {
-                // The default, UnixI2cDevice will be used internally by 
-                // IoT.Device.Bindings
-                return null;
-            }
-        }
+                Temperature = temperatureAndHumiditySensor.Temperature,
+                Humidity = temperatureAndHumiditySensor.Humidity,
+                Temperature2 = pressureAndTemperatureSensor.Temperature,
+                Pressure = pressureAndTemperatureSensor.Pressure
+            };
+        }        
 
         #endregion
     }
